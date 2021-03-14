@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 需求： 对日期2021-1-2，转换为2021年1月2日 -->
+    <div id="app">
+        {{date}} <br>
+        {{date|dateFormatFilter}}
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+        Vue.filter('dateFormatFilter',function(value){
+            //可以将value进行字符串分割，也可以将value转换为Date日期对象
+            //1. 将日期字符串转化为日期对象
+            var d = new Date(value);
+            //2. 分别取出年月日
+            var year = d.getFullYear();
+            var month = d.getMonth()+1; // 0-11 ：代表1-12月
+            // var day = d.getDay(); // 获取的是星期 不是getWeek
+            var day =d.getDate();// 获取几号
+            console.log(year,month,day);
+            //3. 进行拼接
+            return year+"年"+month+"月"+day+'日';
+
+        });
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                date:'2021-1-2'
+            },
+            methods:{
+                
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

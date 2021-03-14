@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 循环对象： 
+             v-for="(value,key,index)  in obj"
+             v-for="(value,key,index)  in arr"  数组的数据结构也是key，value，数组的可以是索引
+             v-for="(value,index)  in arr"  数组的数据结构也是key，value，数组的可以是索引
+
+         案例需求： 遍历 obj 
+    -->
+    <div id="app">
+        <ul>
+            <li v-for="(value,key,index)  in obj">
+                属性值：{{value}}
+                属性名：{{key}}
+                遍历索引：{{index}}
+            </li>
+        </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+       var arr = ['a','b','c'];
+       console.log(arr);
+       
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                obj: {
+                    uname: 'egg',
+                    age: 18,
+                    gender: 'male'
+                }
+            },
+            methods:{
+                
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

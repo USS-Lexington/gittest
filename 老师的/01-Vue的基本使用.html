@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Vue的基本使用 -->
+    <!-- 
+    1. 引入vue.js库文件
+    2. 实例化Vue对象，添加el和data选项
+    3. 添加Vue要操控的标签，一般是一个id为app的div
+    4. 将标签与Vue进行绑定
+    5. data中添加数据
+    6. 通过插值表达式显示数据 
+-->
+    <!--  3. 添加Vue要操控的标签，一般是一个id为app的div（界面元素是写在代码之前） #app快速生成id为app的div -->
+    <div id="app">
+        <!-- 6. 通过插值表达式显示数据 ： 插入数值，语法：{{data的数据属性名}} -->
+        {{msg}}
+        <!-- Hello Vue! -->
+        <p>{{msg}}</p>
+    </div>
+    <!-- 1. 引入vue.js库文件 -->
+    <script src="js/vue.js"></script>
+    
+    <script>
+        // 2. 实例化Vue对象，添加el和data选项 
+        new Vue({  // Vue构造函数的参数是一个对象。对象中可以传递多个参数（选项：el，data）
+            // element：元素，让vue对象与界面进行绑定，在界面中就可以操作vue，vue的语法
+            // 4. 将标签与Vue进行绑定
+            el:'#app',//el的值是字符串，内容是选择器
+            // data： 数据，vue内部提供的数据
+            data:{
+                // 5. data中添加数据
+                msg:'Hello Vue!'
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

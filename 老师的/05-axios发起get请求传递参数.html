@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 通过axios发起异步请求
+         1. 引入axios.js文件
+         2. 调用get方法发起请求
+
+            1. 传统url传递参数
+            axios.get('url?参数名=参数值&参数名2=参数值2').then(function(result){})
+            
+            2. resful设计风格传参
+            axios.get('url/参数值/参数值2').then(function(result){})
+    
+    -->
+    <h1>axios的get请求，传递参数</h1>
+    <script src="js/axios.js"></script>
+    <script>
+        //发起请求的url：http://localhost:3000/axios
+        // 1. 传统url传递参数
+        axios.get('http://localhost:3000/axios?id=111&name=lisi').then( result => {
+            console.log(result.data);
+        })
+        //2. resful设计风格传参  : url传递参数只能传递一个id
+        axios.get('http://localhost:3000/axios/111').then(result => {
+            console.log(result.data);
+            
+        })
+        // axios.get('http://localhost:3000/axios/111/lisi').then(result => {
+        //     console.log(result.data);
+            
+        // })
+
+    </script>
+    
+</body>
+</html>

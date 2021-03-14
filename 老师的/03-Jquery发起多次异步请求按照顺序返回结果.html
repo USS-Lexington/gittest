@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- jquery发起异步ajax请求
+         $.ajax()
+         需求： 发起三次请求，结果需要按照请求的顺序返还
+
+            1. 第一个请求发起之后，数据回来之后
+            2. 第一次请求数据回来之后，发起第二次请求
+            3. 第二次请求数据回来之后，发起第三次请求
+    -->
+    <div id="app">
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery.js"></script>
+    
+    <script>
+        //发起异步请求
+        $.ajax({
+            url:'http://localhost:3000/data',
+            success:function(resultData){
+                console.log(resultData);
+                //请求成功回调函数，这个方法执行，就说明请求数据回来了
+                //发起第二次异步请求
+                $.ajax({
+                    url:'http://localhost:3000/data1',
+                    success:function(resultData){
+                        console.log(resultData);
+                        //第二次请求回来，发起第三次请求
+                        //发起第三次请求
+                        $.ajax({
+                            url:'http://localhost:3000/data2',
+                            success:function(resultData){
+                                console.log(resultData);
+                                
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        
+      
+
+    </script>
+    
+</body>
+</html>
