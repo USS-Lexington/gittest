@@ -8,18 +8,68 @@
     <title>Document</title>
     <script src="jquery-3.5.1.js"></script>
     <script src="vue.js"></script>
+    <style>
+        #timer {
+            border: 1px solid black;
+            padding: 3px;
+            width: 80px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <div id="main">
         <p>{{text}}</p>
+        <div id="timer">{{hour|checkFormat}}:{{min|checkFormat}}:{{sec|checkFormat}}</div>
+        <button @click="timerStart">开始计时</button>
+        <button @click="timerStop">停止计时</button>
+        <button @click="timerSave">暂存数据</button>
+        <br>
     </div>
     <script>
         "use strict";
         var vm = new Vue({
             el: "#main",
             data: {
-                text: "hello world"
+                text: "计时器",
+                hour: 0,
+                min: 0,
+                sec: 0,
+                loop: undefined,
+                running: false
+            },
+            methods: {
+                timerStart: function() {
+                    if (!this.running) {
+                        this.running = true;
+                        this.loop = setInterval(function() {
+                            if (vm.min == 59) {
+                                vm.hour++;
+                                vm.min = -1;
+                            }
+                            if (vm.sec == 59) {
+                                vm.min++;
+                                vm.sec = -1;
+                            }
+                            vm.sec++;
+                        }, 1000);
+                    }
+                },
+                timerStop: function() {
+                    clearInterval(vm.loop);
+                    vm.running = false;
+                },
+                timerSave: function() {
+
+                }
+            },
+            filters: {
+                checkFormat: function(value) {
+                    if (value < 10) {
+                        return "0" + value;
+                    }
+                }
             }
         });
     </script>
