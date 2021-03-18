@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .box {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            margin-top: calc(50vh - 200px);
+            background-color: #66CCFF;
+            border-radius: 20px;
+            /* display: flex; */
+        }
+        
+        .box>* {
+            display: block;
+            margin: 0 auto;
+            margin-top: 50px;
+            outline: none;
+        }
+        
+        .box>input {
+            height: 50px;
+            width: 400px;
+            padding: 0 2em;
+        }
+        
+        .box>button {
+            height: 50px;
+            width: 100px;
+            font-size: 35px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            color: #66CCFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <input type="text" placeholder="用户名(Admin)" v-model="username">
+            <input type="password" placeholder="密码(123456)" v-model="password">
+            <button @click="login">登录</button>
+        </div>
+    </div>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/md5.js"></script>
+    <script>
+        "use strict";
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                username: "",
+                password: "",
+                userlist: {
+                    name: "D5ABCFBA86C192C6E604C598451FB82D",
+                    pass: "F59BD65F7EDAFB087A81D4DCA06C4910"
+                }
+            },
+            methods: {
+                login: function() {
+                    let usernameHash = hex_md5(hex_md5(vm.username));
+                    let passwordHash = hex_md5(hex_md5(vm.password));
+                    if (usernameHash == vm.userlist.name && passwordHash == vm.userlist.pass) {
+                        alert("登陆成功");
+                    } else {
+                        alert("用户名或密码错误");
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
