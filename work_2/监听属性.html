@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="text">
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                text: "Hello world"
+            },
+            methods: {
+
+            },
+            computed: {
+
+            },
+            filters: {
+
+            },
+            watch: {
+                text(newText, oldText) {
+                    console.log(oldText + "  >>  " + newText);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

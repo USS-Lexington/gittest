@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>和：{{add}}</p>
+        <p>A:{{alpha}}</p>
+        <p>B:{{beta}}</p>
+        <p>A操作：</p>
+        <button @click="alpha+=1">增加</button>
+        <button @click="alpha-=1">减少</button>
+        <button @click="alpha=0">归零</button>
+    </div>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/vue.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                alpha: 0,
+                beta: 10
+            },
+            methods: {
+
+            },
+            computed: {
+                add() {
+                    return this.alpha + this.beta;
+                    // return 82;
+                }
+            },
+            filters: {
+
+            },
+            watch: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
