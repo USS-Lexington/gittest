@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1. 计算属性：处理比较复杂的计算逻辑
+            在vue实例化中添加computed属性
+                computed:{
+
+                    计算属性名：function(){
+                        //处理复杂计算逻辑
+                        return 计算结果
+                    }
+                }
+
+            使用：{{计算属性名}}
+
+        2. 将一个字符串进行反转
+
+                Hello ---》  olleH
+                
+                （1）. 将字符串转换为数组
+                （2）. 数组的反转方法
+                （3）. 将数组转换为字符串
+
+     -->
+    <div id="app">
+        转换之前的字符串：{{msg}} <br>
+        <!-- （1）. 将字符串转换为数组 -->
+        <!-- 转换之后的字符串：{{msg.split('')}}<br> -->
+        <!-- （2）. 数组的反转方法 -->
+        <!-- 转换之后的字符串：{{msg.split('').reverse()}}<br> -->
+        <!-- （3）. 将数组转换为字符串 -->
+        转换之后的字符串：{{msg.split('').reverse().join('')}}<br> 
+        转换之后的字符串：{{msg.split('').reverse().join('')}}<br> 
+        转换之后的字符串：{{msg.split('').reverse().join('')}}<br> 
+
+        <!-- 计算属性：处理计算比较复杂的逻辑，定义是一个方法，使用当属性用 -->
+        转换之后的字符串：{{strReverse}}<br> 
+        转换之后的字符串：{{strReverse}}<br> 
+        转换之后的字符串：{{strReverse}}<br> 
+        <!--方法调用  -->
+        转换之后的字符串：{{strReverseFn()}}<br> 
+        转换之后的字符串：{{strReverseFn()}}<br> 
+        转换之后的字符串：{{strReverseFn()}}<br> 
+
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                msg:'Hello'
+            },
+            methods:{
+                 strReverseFn:function(){
+                   console.log("strReverseFn方法执行了");
+                     
+                   var result = this.msg.split('').reverse().join('');  
+                   return result;
+                }
+            },
+            computed:{
+                strReverse:function(){
+                   console.log("strReverse计算属性执行了");
+                   
+                   var result = this.msg.split('').reverse().join('');  //msg is not defined
+                   return result;
+                }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

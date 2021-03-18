@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 通过axios发起异步请求
+         1. 引入axios.js文件
+         2. 调用get方法发起请求
+
+            axios.get('url').then(function(result){})
+    
+    -->
+    <h1>axios的get方法介绍</h1>
+    <script src="js/axios.js"></script>
+    <script>
+        axios.get('http://localhost:3000/adata')
+             //then是成功之后调用的回调函数，result是后台返回的结果
+             .then(function(result){
+                 //axios将后台接口返回的数据进行了一个封装，传递给result
+                console.log(result);
+                //后台的数据封装到result的data
+                console.log(result.data);
+                
+             })
+        axios.get('http://localhost:3000/adata')
+             .then( result => {
+                 console.log(result.data);
+                 
+             })
+    </script>
+    
+</body>
+</html>

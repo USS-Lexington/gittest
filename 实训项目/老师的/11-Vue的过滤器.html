@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1.过滤器：格式化数据：首字母大写，日期格式的处理
+         2. 语法
+
+            1. 全局过滤器
+                Vue.filter('过滤器的名字',function(value){})
+            2. 局部过滤器
+                定义选项：
+                    filters:{
+                        过滤器的名字：function(value){}
+                    }
+
+            3. 使用语法： {{data的数据名 | 过滤器的名字}}
+        3. 需求： 首字母大写，小写转换
+                    
+                 1. 取出首字母
+                 2. 转换为大写字母
+                 3. 拼接剩余的字母
+    -->
+    <div id="app">
+        原来的名字：{{name}} <br>
+        转换后的名字：{{name | toUpperCaseFilter}}
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+        //定义全局过滤器
+        Vue.filter('toUpperCaseFilter',function(value){
+            // 1. 取出首字母
+            // value.charAt(0)
+            // 2. 转换为大写字母
+            // value.charAt(0).toUpperCase()
+            // console.log(value.charAt(0).toUpperCase());
+            // 3. 拼接剩余的字母
+            // console.log(value.slice(1));
+            return value.charAt(0).toUpperCase()+value.slice(1)
+        })
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                name:'tom'
+
+            },
+            methods:{
+                
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

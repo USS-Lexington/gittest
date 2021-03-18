@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>axios的全局配置介绍</h1>
+    <script src="js/axios.js"></script>
+    <script>
+        // 全局配置+json数据返回
+        // 配置基本url
+        axios.defaults.baseURL="http://localhost:3000";
+        // 请求路径/axios-json
+        // axios.get('http://localhost:3000/axios-json')
+        axios.get('/axios-json').then(result => {
+            //如果后台返回的是js对象，data就是这个js对象
+            console.log(result.data);
+        })
+        
+    </script>
+    
+</body>
+</html>

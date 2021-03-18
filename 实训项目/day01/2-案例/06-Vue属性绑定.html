@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 属性绑定
+         1. v-bind:标签的属性名="data的数据属性"
+         2. :标签的属性名="data的数据属性"
+         案例需求：
+
+            1. 俩超链接，分别用两种方式进行href属性的绑定
+            2. 切换按钮，点击按钮之后，切换href绑定的数据
+    -->
+    <div id="app">
+        <a href="http://www.baidu.com">百度</a> <br>
+
+        <a v-bind:href="webSiteUrl">{{webSiteName}}</a> <br>
+        <a :href="webSiteUrl">{{webSiteName}}</a> <br>
+
+        <button @click='changeFn'>切换地址</button>
+    </div>
+    <script src="js/vue.js"></script>
+
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                webSiteUrl: "http://www.baidu.com",
+                webSiteName: "百度"
+            },
+            methods: {
+                changeFn: function() {
+                    //改变webSiteUrl
+                    this.webSiteUrl = "http://www.itcast.cn";
+                    //改变内部文本
+                    this.webSiteName = "传智教育";
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

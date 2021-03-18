@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>axios的delete方法介绍</h1>
+    <script src="js/axios.js"></script>
+    <script>
+        // delete请求：/axios
+        // 1. 通过？传递参数
+        axios.delete('http://localhost:3000/axios?id=123')
+             .then(result => {
+                 console.log(result.data);
+             })
+        // 2. 通过resful设计风格传递参数
+        axios.delete('http://localhost:3000/axios/123/zhangsan')
+             .then(result => {
+                 console.log(result.data);
+                 
+             })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Vue的事件绑定
+        1. v-on:事件名="代码/函数"
+        2. @事件名="代码/函数"
+        案例需求： 加法运算
+ -->
+    <div id="app">
+        {{num}} <br>
+        <button v-on:click="num++"> 加法运算 </button> <br>
+        <input type="button" value="加法运算" @click="addFn">
+
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                num:0
+            },
+            // vue中的方法需要定义在methods
+            methods:{
+                addFn:function(){
+                    //对num++
+                    //问题？ 在methods中如何获取data数据，并且操作
+                    // this.num // this代表的vue实例对象
+                    this.num++;
+                }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport content=' width=device-width, initial-scale=1.0>
+    <title>Document</title>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- <link rel="stylesheet" href="css/tushu.css"> -->
+    <!-- 引入组件库 -->
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        .clearfix::after,
+        .clearfix::before {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .tac {
+            display: flex;
+            justify-content: center;
+        }
+
+        th .cell {
+            text-align: center;
+        }
+
+        table tr td:nth-child(1),
+        table tr td:nth-child(3) {
+            text-align: center;
+        }
+
+        .mt20 {
+            margin-bottom: 30px;
+            overflow: hidden;
+            width: 500px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .tablewidth {
+            width: 800px;
+        }
+
+        .box {
+            background-color: #fff;
+            padding: 10px 30px 30px;
+            width: 800px;
+            margin: auto;
+        }
+
+        .box h3 {
+            font-family: "PingFang SC", "Helvetica Neue";
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="box">
+            <h3>图书案例管理系统</h3>
+            <!-- 图书总数 -->
+            <h4 style="text-align: center;">图书总数:</h4>
+            <div class="clearfix  mt20">
+                <div class="el-input el-input-group el-input-group--append el-input--suffix">
+                    <!--  图书名称-->
+                    <input type="text" placeholder="请输入内容" class="el-input__inner">
+
+                    <div class="el-input-group__append">
+
+                        <button @click="submitForm" type="button" class="el-button el-button--default">
+                            <!-- 编辑icon    当点击修改按钮转换才显示-->
+                            <!--  如果flag 为false  显示编辑  -->
+                            <i v-show="!flag" class="el-icon-edit"></i>
+                            <!-- 如果flag为true，显示添加-->
+                            <i v-show="flag" class="el-icon-circle-plus-outline"></i>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class=" el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition  tablewidth">
+                <div class="el-table__header-wrapper">
+                    <table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 820px;">
+                        <colgroup>
+                            <col name="el-table_3_column_7" width="50">
+                            <col name="el-table_3_column_8" width="160">
+                            <col name="el-table_3_column_9" width="130">
+                            <col name="el-table_3_column_9" width="130">
+                        </colgroup>
+                        <thead class="has-gutter">
+                            <tr>
+                                <th colspan="1" rowspan="1" class="el-table_3_column_7     is-leaf">
+                                    <div class="cell">编号</div>
+                                </th>
+                                <th colspan="1" rowspan="1" class="el-table_3_column_8     is-leaf">
+                                    <div class="cell">名称</div>
+                                </th>
+                                <th colspan="1" rowspan="1" class="el-table_3_column_9     is-leaf">
+                                    <div class="cell">时间</div>
+                                </th>
+                                <th colspan="1" rowspan="1" class="el-table_3_column_9     is-leaf">
+                                    <div class="cell">操作</div>
+                                </th>
+                                <th class="gutter" style="width: 0px; display: none;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="el-table__body-wrapper is-scrolling-none">
+                    <table cellspacing="0" cellpadding="0" border="0" class="el-table__body" style="width: 820px;">
+                        <colgroup>
+                            <col name="el-table_3_column_7" width="50">
+                            <col name="el-table_3_column_8" width="160">
+                            <col name="el-table_3_column_9" width="130">
+                            <col name="el-table_3_column_9" width="130">
+                        </colgroup>
+                        <tbody>
+
+                            <!-- 遍历图书 -->
+                            <tr class="el-table__row" >
+                                <td rowspan="1" colspan="1" class="el-table_3_column_7  ">
+                                    <div class="cell"></div>
+                                </td>
+                                <td rowspan="1" colspan="1" class="el-table_3_column_8  ">
+                                    <div class="cell"></div>
+                                </td>
+                                <td rowspan="1" colspan="1" class="el-table_3_column_9  ">
+                                    <div class="cell"></div>
+                                </td>
+                                <td rowspan="1" colspan="1" class="el-table_3_column_9  tac ">
+
+                                    <button  type="button" class="el-button el-button--primary el-button--mini">
+                                        <i class="el-icon-edit"></i>
+                                    </button>
+
+                                    <button  type="button" class="el-button el-button--danger el-button--mini">
+                                        <i class="el-icon-delete"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="el-table__column-resize-proxy" style="display: none;"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <script>
+        //  axios基本url
+        new Vue({
+            el: "#app",
+            data: {
+                
+            },
+            computed: {
+               
+            },
+            methods: {
+                
+            },
+            created() {
+            },
+        })
+    </script>
+
+</body>
+
+</html>

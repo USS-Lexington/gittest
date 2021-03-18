@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 需求：简易的加法计算器
+         分析：
+            1. 点击计算按钮
+            2. 获取数值A和B的值
+            3. 计算结果
+
+            双向数据绑定的本质：是将标签的value属性，与data数据属性进行了双向数据绑定
+
+                v-model="a" ，将标签value属性，与data中a进行双向数据绑定
+
+                如果a变化，那么value跟着一起变化（数据影响界面）
+                如果value变化（用户在界面修改），那么a跟着一起变化（界面影响数据）
+    -->
+    <div id="app">
+        <h1>简单计算器</h1>
+        数值A：<input type="text" v-model="a"> <br>
+        数值B：<input type="text" v-model="b"> <br>
+        <button @click="add">计算+</button> 
+        <button @click="sub">计算-</button> <br>
+        <button @click="chengfa">计算*</button> 
+        <button @click="chufa">计算/</button> <br>
+        计算结果：{{result}}
+    </div>
+    <script src="js/vue.js"></script>
+    
+    <script>
+       var vue = new Vue({  
+            el:'#app',
+            data:{
+                a:'',
+                b:'',
+                result:''
+            },
+            methods:{
+                add:function(){
+                    // 只有加法比较特殊，+
+                    // 1. 字符串相连 ， +左右两侧只有有一方为字符串，就会字符串相连 （如果需要数字相加，就必须做类型转换）
+                    // 2. 数字相加
+                    this.result = parseInt(this.a) + parseInt(this.b);
+                },
+                sub:function(){
+                    this.result = this.a - this.b; // '88' - '22' , 减法有隐式转换，将-左右两侧的非数字，转换为数字
+                },
+                chengfa:function(){
+                    this.result = this.a * this.b;  //乘法有隐式转换，将-左右两侧的非数字，转换为数字
+                },
+                chufa:function(){
+                    this.result = this.a / this.b;  // 除法有隐式转换，将-左右两侧的非数字，转换为数字
+                }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
